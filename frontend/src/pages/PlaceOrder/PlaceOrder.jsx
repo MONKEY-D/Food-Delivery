@@ -20,7 +20,7 @@ const PlaceOrder = () => {
   });
 
   // Define the frontend URL
-  const frontend_url = "https://food-delivery-backend-smf6.onrender.com";
+  const frontend_url = "https://tomatofront-il1y.onrender.com";
 
   const onChangeHandler = (event) => {
     const name = event.target.name;

@@ -20,7 +20,7 @@ const PlaceOrder = () => {
   });
 
   // Define the frontend URL
-  const frontend_url = "https://tomatofront-il1y.onrender.com";
+  const frontend_url = import.meta.env.VITE_FRONTEND_URL || "https://localhost:5173";
 
   const onChangeHandler = (event) => {
     const name = event.target.name;
@@ -52,7 +52,7 @@ const PlaceOrder = () => {
       const { order_id, order_data } = response.data;
 
       const options = {
-        key: import.meta.VITE_RAZORPAY_KEY_ID,
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID,
         amount: orderData.amount * 100, // in paise
         currency: "INR",
         name: "Food Delivery",

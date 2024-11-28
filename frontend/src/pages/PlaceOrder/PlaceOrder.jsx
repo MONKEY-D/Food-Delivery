@@ -20,7 +20,7 @@ const PlaceOrder = () => {
   });
 
   // Define the frontend URL
-  const frontend_url = import.meta.env.VITE_FRONTEND_URL || "https://localhost:5173";
+  const frontend_url = "http://localhost:5173";
 
   const onChangeHandler = (event) => {
     const name = event.target.name;

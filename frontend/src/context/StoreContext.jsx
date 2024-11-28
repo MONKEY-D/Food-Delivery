@@ -5,7 +5,7 @@ export const StoreContext = createContext(null);
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   // const url = "https://food-delivery-backend-smf6.onrender.com";
-  const url = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000"
+  const url = "http://localhost:4000"
   const [token, setToken] = useState("");
   const [food_list, setFoodList] = useState([]);
 
@@ -116,6 +116,7 @@ const StoreContextProvider = (props) => {
     token,
     setToken,
   };
+
 
   return (
     <StoreContext.Provider value={contextValue}>

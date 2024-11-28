@@ -38,7 +38,7 @@ const placeOrder = async (req, res) => {
 // Function to verify payment
 const verifyOrder = async (req, res) => {
   try {
-    const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature, orderId } = req.body;
 
     // Create a hash using Razorpay secret
     const generatedSignature = crypto
@@ -56,7 +56,7 @@ const verifyOrder = async (req, res) => {
 
     if (generatedSignature === razorpay_signature) {
       // If the payment is verified, we keep the default status "Food Processing"
-      await orderModel.findByIdAndUpdate(orderId, { payment: true });
+      await orderModel.findByIdAndUpdate(orderId, {status: "Paid", payment: true });
       res.json({ success: true, message: "Payment verified successfully" });
     } else {
       res.json({ success: false, message: "Payment verification failed" });

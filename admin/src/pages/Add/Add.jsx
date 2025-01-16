@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { assets } from "../../assets/assets";
 import "./Add.css";
-import axios from 'axios';
+import axios from "axios";
 import { toast } from "react-toastify";
 
-const Add = ({url}) => {
-  
+const Add = ({ url }) => {
   // const url = "https://food-delivery-backend-smf6.onrender.com"
   const [image, setImage] = useState(false);
   const [data, setData] = useState({
@@ -14,6 +13,9 @@ const Add = ({url}) => {
     price: "",
     category: "Salad",
   });
+
+  const [loading, setLoading] = useState(false);
+
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -23,10 +25,13 @@ const Add = ({url}) => {
   const onSubmitHandler = async (event) => {
     event.preventDefault();
 
-    if (image.size > 5 * 1024 * 1024) { // Limit file size to 5MB
+    if (image.size > 5 * 1024 * 1024) {
+      // Limit file size to 5MB
       toast.error("File size exceeds 5MB");
       return;
     }
+
+    setLoading(true);
 
     const formData = new FormData();
     formData.append("name", data.name);
@@ -34,18 +39,25 @@ const Add = ({url}) => {
     formData.append("price", Number(data.price));
     formData.append("category", data.category);
     formData.append("image", image);
-    const response = await axios.post(`${url}/api/food/add`, formData);
-    if (response.data.success) {
-      setData({
-        name: "",
-        description: "",
-        price: "",
-        category: "Salad",
-      });
-      setImage(false);
-      toast.success(response.data.message);
-    } else {
-      toast.error(response.data.message);
+
+    try {
+      const response = await axios.post(`${url}/api/food/add`, formData);
+      if (response.data.success) {
+        setData({
+          name: "",
+          description: "",
+          price: "",
+          category: "Salad",
+        });
+        setImage(false);
+        toast.success(response.data.message);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error("An error occurred while uploading the food.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -118,8 +130,12 @@ const Add = ({url}) => {
             />
           </div>
         </div>
-        <button type="submit" className="add-btn">
-          ADD
+        <button type="submit" className="add-btn" disabled={loading}>
+          {loading ? (
+            <div className="spinner"></div> // Add your spinner component here
+          ) : (
+            "ADD"
+          )}
         </button>
       </form>
     </div>

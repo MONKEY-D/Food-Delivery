@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 
 const Add = ({url}) => {
   
+  const url = "https://food-delivery-backend-smf6.onrender.com"
   const [image, setImage] = useState(false);
   const [data, setData] = useState({
     name: "",

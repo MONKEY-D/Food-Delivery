@@ -4,9 +4,9 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  build: {
-    rollupOptions: {
-      external: ['axios'], // Mark axios as an external dependency
-    },
-  },
+  // build: {
+  //   rollupOptions: {
+  //     external: ['axios'], // Mark axios as an external dependency
+  //   },
+  // },
 })

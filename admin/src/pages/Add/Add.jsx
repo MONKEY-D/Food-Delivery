@@ -14,6 +14,10 @@ const Add = ({url}) => {
     price: "",
     category: "Salad",
   });
+
+  //chatgpt spinner
+  const [loading, setLoading] = useState(false); 
+
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -27,6 +31,9 @@ const Add = ({url}) => {
       toast.error("File size exceeds 5MB");
       return;
     }
+
+    //chatgpt
+    setLoading(true);
 
     const formData = new FormData();
     formData.append("name", data.name);
@@ -43,6 +50,7 @@ const Add = ({url}) => {
         category: "Salad",
       });
       setImage(false);
+      setLoading(false);
       toast.success(response.data.message);
     } else {
       toast.error(response.data.message);
@@ -118,8 +126,15 @@ const Add = ({url}) => {
             />
           </div>
         </div>
-        <button type="submit" className="add-btn">
+        {/* <button type="submit" className="add-btn">
           ADD
+        </button> */}
+        <button type="submit" className="add-btn" disabled={loading}>
+          {loading ? (
+            <div className="spinner"></div> // Add your spinner component here
+          ) : (
+            "ADD"
+          )}
         </button>
       </form>
     </div>

@@ -21,6 +21,12 @@ const Add = ({url}) => {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
+
+    if (image.size > 5 * 1024 * 1024) { // Limit file size to 5MB
+      toast.error("File size exceeds 5MB");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("description", data.description);

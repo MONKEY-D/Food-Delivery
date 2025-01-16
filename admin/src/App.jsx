@@ -7,7 +7,7 @@ import Add from "./pages/Add/Add";
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 // import { StoreContext } from "../../frontend/src/context/StoreContext";
-import { useContext } from "react";
+// import { useContext } from "react";
 
 const App = () => {
 

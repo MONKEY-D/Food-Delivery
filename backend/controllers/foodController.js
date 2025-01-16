@@ -10,52 +10,6 @@ cloudinary.config({
     secure: true,
 });
 
-// const addFood = async (req, res) => {
-//     let image_filename = `${req.file.filename}`;
-
-//     const food = new foodModel({
-//         name:req.body.name,
-//         description:req.body.description,
-//         price:req.body.price,
-//         category:req.body.category,
-//         image:image_filename
-//     })
-//     try {
-//         await food.save();
-//         res.json({success:true,message:"Food Added"})
-//     } catch (error) {
-//         console.log(error)
-//         res.json({success:false,message:"Error"})
-//     }
-// }
-
-// chatgpt
-// const addFood = async (req, res) => {
-//     try {
-//         // Upload image to Cloudinary
-//         const result = await cloudinary.uploader.upload(req.file.path, {
-//             folder: 'food_items',
-//             use_filename: true,
-//             unique_filename: false,
-//         });
-
-//         // Save food details in database, including image URL from Cloudinary
-//         const food = new foodModel({
-//             name: req.body.name,
-//             description: req.body.description,
-//             price: req.body.price,
-//             category: req.body.category,
-//             image: result.secure_url, // Cloudinary image URL
-//         });
-
-//         await food.save();
-//         res.json({ success: true, message: "Food Added" });
-//     } catch (error) {
-//         console.log(error);
-//         res.json({ success: false, message: "Error adding food" });
-//     }
-// };
-
 const addFood = async (req, res) => {
     try {
       // Validate if the file exists in the request
@@ -64,11 +18,14 @@ const addFood = async (req, res) => {
       }
 
       console.log('Uploaded file:', req.file);
+
+      const uniqueFilename = `${Date.now()}-${Math.floor(Math.random() * 10000)}-${req.file.originalname}`;
   
       // Upload image to Cloudinary directly from buffer
       const uploadStream = cloudinary.uploader.upload_stream(
         {
           folder: "food_items",
+          public_id: uniqueFilename,
           use_filename: true,
           unique_filename: false,
         },

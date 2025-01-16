@@ -6,12 +6,13 @@ import Orders from "./pages/Orders/Orders";
 import Add from "./pages/Add/Add";
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import { StoreContext } from "../../frontend/src/context/StoreContext";
+// import { StoreContext } from "../../frontend/src/context/StoreContext";
 import { useContext } from "react";
 
 const App = () => {
 
-  const { url } = useContext(StoreContext);
+  // const { url } = useContext(StoreContext);
+  const url = "https://food-delivery-backend-smf6.onrender.com";
 
   return (
     <div>

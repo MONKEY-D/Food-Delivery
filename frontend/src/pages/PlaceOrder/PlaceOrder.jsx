@@ -20,7 +20,8 @@ const PlaceOrder = () => {
   });
 
   // Define the frontend URL
-  const frontend_url = "http://localhost:5173";
+  // const frontend_url = "http://localhost:5173";
+  const frontend_url = "https://tomatofront-il1y.onrender.com";
 
   const onChangeHandler = (event) => {
     const name = event.target.name;

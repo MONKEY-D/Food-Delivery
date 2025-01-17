@@ -3,7 +3,7 @@ import "./Cart.css";
 import { StoreContext } from "../../context/StoreContext";
 import {useNavigate} from 'react-router-dom'
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import "react-toastify/dist/ReactToastify.css";
 
 const Cart = () => {
   const { cartItems, food_list, removeFromCart , getTotalCartAmount,url} = useContext(StoreContext);
@@ -22,7 +22,6 @@ const Cart = () => {
 
   return (
     <div className="cart">
-      <ToastContainer position="top-right" autoClose={3000} />
       <div className="cart-items">
         <div className="cart-items-title">
           <p>Items</p>
@@ -72,6 +71,7 @@ const Cart = () => {
             </div>
           </div>
           <button onClick={handleProceedToCheckout}>PROCEED TO CHECKOUT</button>
+          <ToastContainer/>
         </div>
         <div className="cart-promocode">
           <div>

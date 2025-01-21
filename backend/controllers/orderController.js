@@ -92,7 +92,7 @@ const listOrders = async (req, res) => {
 }
 
 // Api for updating order status
-// CHATGPT
+
 const updateStatus = async (req, res) => {
   try {
     const { orderId, status } = req.body;

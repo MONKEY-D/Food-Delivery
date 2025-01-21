@@ -75,7 +75,7 @@ const StoreContextProvider = (props) => {
 
   //On refresh it will not remove added cart items
 
-  //ChatGPT
+ 
   // const loadCartData = async (token) => {
   //   const response = await axios.post(url + "/api/cart/get", {}, { headers: { token } });
   //   const validCartItems = Object.keys(response.data.cartData).reduce((acc, itemId) => {

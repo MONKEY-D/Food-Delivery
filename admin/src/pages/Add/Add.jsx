@@ -15,7 +15,7 @@ const Add = ({url}) => {
     category: "Salad",
   });
 
-  //chatgpt spinner
+  
   const [loading, setLoading] = useState(false); 
 
   const onChangeHandler = (event) => {
@@ -32,7 +32,7 @@ const Add = ({url}) => {
       return;
     }
 
-    //chatgpt
+
     setLoading(true);
 
     const formData = new FormData();
